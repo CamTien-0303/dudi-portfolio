@@ -159,11 +159,10 @@ export const contactInfo = {
 };
 
 export const navigation = [
-  { label: 'Trang chủ', href: '/#home' },
-  { label: 'Giới thiệu', href: '/#about' },
-  { label: 'Dịch vụ', href: '/#services' },
-  { label: 'Quy trình', href: '/#process' },
-  { label: 'Dự án', href: '/#projects' },
-  { label: 'Bảng giá', href: '/#pricing' },
-  { label: 'Liên hệ', href: '/#contact' },
+  { label: 'Trang chủ', href: '/' },
+  { label: 'Dự án', href: '/projects' },
+  { label: 'Giới thiệu', href: '/about' },
+  { label: 'Năng lực', href: '/services' },
+  { label: 'Quy trình', href: '/process' },
+  { label: 'Liên hệ', href: '/contact' },
 ];

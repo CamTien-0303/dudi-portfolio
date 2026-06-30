@@ -5,27 +5,15 @@ import Reveal from './Reveal'
 import { motion } from 'framer-motion'
 
 const quickLinks = [
-  { label: 'Trang chủ', href: '/#home' },
-  { label: 'Giới thiệu', href: '/#about' },
-  { label: 'Dịch vụ', href: '/#services' },
-  { label: 'Quy trình', href: '/#process' },
-  { label: 'Dự án', href: '/#projects' },
-  { label: 'Bảng giá', href: '/#pricing' },
-  { label: 'Liên hệ', href: '/#contact' },
+  { label: 'Trang chủ', href: '/' },
+  { label: 'Giới thiệu', href: '/about' },
+  { label: 'Năng lực', href: '/services' },
+  { label: 'Quy trình', href: '/process' },
+  { label: 'Dự án', href: '/projects' },
+  { label: 'Liên hệ', href: '/contact' },
 ]
 
 export default function Footer() {
-  const handleNavClick = (e, href) => {
-    if (href.startsWith('/#')) {
-      e.preventDefault()
-      const id = href.replace('/#', '')
-      const element = document.getElementById(id)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
-    }
-  }
-
   return (
     <footer className="bg-transparent text-slate-300 relative overflow-hidden">
       <div className="container-max section-padding pt-16 pb-12 relative z-10">
@@ -45,24 +33,18 @@ export default function Footer() {
                 DUDI Software đồng hành cùng bạn từ khâu tư vấn, thiết kế UI/UX đến vận hành kỹ thuật và tối ưu tăng doanh số bền vững.
               </p>
               <div className="flex flex-wrap justify-center gap-3.5 pt-2">
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('contact');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="px-6 py-2.5 bg-white text-primary-red font-extrabold text-sm rounded-xl shadow-md hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary-red/10 active:translate-y-0 active:scale-95 transition-all duration-300 cursor-pointer"
+                <Link
+                  to="/contact"
+                  className="px-6 py-2.5 bg-white text-primary-red font-extrabold text-sm rounded-xl shadow-md hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary-red/10 active:translate-y-0 active:scale-95 transition-all duration-300 cursor-pointer inline-flex items-center justify-center"
                 >
                   Nhận tư vấn ngay
-                </button>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('services');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="px-6 py-2.5 bg-white/10 hover:bg-white/15 text-white font-extrabold text-sm rounded-xl border border-white/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 cursor-pointer"
+                </Link>
+                <Link
+                  to="/services"
+                  className="px-6 py-2.5 bg-white/10 hover:bg-white/15 text-white font-extrabold text-sm rounded-xl border border-white/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 cursor-pointer inline-flex items-center justify-center"
                 >
                   Xem dịch vụ
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -130,14 +112,13 @@ export default function Footer() {
                 <ul className="space-y-3.5">
                   {quickLinks.map((item) => (
                     <li key={item.label}>
-                      <a
-                        href={item.href}
-                        onClick={(e) => handleNavClick(e, item.href)}
+                      <Link
+                        to={item.href}
                         className="text-slate-300 text-sm hover:text-primary-red transition-colors duration-300 inline-flex items-center gap-2 group cursor-pointer"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-primary-red/20 group-hover:bg-primary-red transition-all duration-300" />
                         <span className="group-hover:translate-x-1 transition-transform duration-300">{item.label}</span>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -148,19 +129,18 @@ export default function Footer() {
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
               >
                 <h3 className="text-white font-semibold tracking-wide text-xs uppercase mb-6">
-                  Dịch vụ
+                  Năng lực
                 </h3>
                 <ul className="space-y-3.5">
                   {services.slice(0, 6).map((service) => (
                     <li key={service.id}>
-                      <a
-                        href="/#services"
-                        onClick={(e) => handleNavClick(e, '/#services')}
+                      <Link
+                        to="/services"
                         className="text-slate-300 text-sm hover:text-primary-red transition-colors duration-300 inline-flex items-center gap-2 group cursor-pointer"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-primary-red/20 group-hover:bg-primary-red transition-all duration-300" />
                         <span className="group-hover:translate-x-1 transition-transform duration-300">{service.title}</span>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

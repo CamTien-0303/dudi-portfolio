@@ -68,13 +68,13 @@ export default function ContactSection() {
           className="text-center mb-12 lg:mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary-red/10 border border-primary-red/20 text-primary-red text-xs font-semibold uppercase tracking-wider mb-4">
-            Liên hệ
+            Khởi đầu dự án
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-tight mb-4">
-            Sẵn sàng xây dựng website<br />cho doanh nghiệp của bạn?
+            Bắt đầu dự án cùng DUDI Software
           </h2>
           <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-            Hãy để lại thông tin, chúng tôi sẽ liên hệ tư vấn miễn phí trong 24h.
+            Hãy để lại thông tin, chúng tôi sẽ liên hệ tư vấn giải pháp phần mềm & hệ thống tối ưu nhất.
           </p>
         </motion.div>
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { ArrowRight, Play, Users, FolderKanban, SmilePlus } from 'lucide-react'
 
 const floatingCards = [
@@ -8,11 +9,6 @@ const floatingCards = [
 ]
 
 export default function HeroSection() {
-  const handleScroll = (id) => {
-    const element = document.getElementById(id)
-    if (element) element.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Background */}
@@ -27,8 +23,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-500 text-xs font-semibold uppercase tracking-wider mb-6">
-                <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse" />
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-red/10 border border-primary-red/25 text-primary-red text-xs font-semibold uppercase tracking-wider mb-6">
+                <span className="w-2 h-2 bg-primary-red rounded-full animate-pulse" />
                 DUDI Software
               </span>
             </motion.div>
@@ -37,11 +33,11 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[3.5rem] font-bold text-dark-900 leading-[1.1] mb-6 text-balance"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[3.5rem] font-black text-white leading-[1.1] mb-6 text-balance"
             >
-              Thiết kế website{' '}
+              Giải pháp phần mềm &{' '}
               <span className="relative inline-block">
-                <span className="gradient-text">chuyên nghiệp</span>
+                <span className="gradient-text">hệ thống số</span>
                 <svg className="absolute -bottom-2.5 left-0 w-full" viewBox="0 0 300 12" fill="none">
                   <motion.path
                     initial={{ pathLength: 0 }}
@@ -63,9 +59,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-              className="text-dark-500 text-base sm:text-lg leading-relaxed mb-8 max-w-xl text-balance"
+              className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-xl text-balance"
             >
-              Chúng tôi xây dựng website không chỉ để giới thiệu thương hiệu, mà còn trở thành công cụ vận hành, thu hút khách hàng và phát triển doanh thu bền vững.
+              DUDI Software thiết kế, phát triển và vận hành các giải pháp phần mềm, website cao cấp và ứng dụng di động tùy chỉnh giúp số hóa quy trình và tăng trưởng bền vững.
             </motion.p>
 
             <motion.div
@@ -74,20 +70,19 @@ export default function HeroSection() {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <button
-                onClick={() => handleScroll('contact')}
+              <Link
+                to="/projects"
                 className="group inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-primary-red to-deep-red text-white font-bold rounded-2xl hover:opacity-90 transition-all duration-300 hover:shadow-xl hover:shadow-primary-red/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer"
               >
-                Nhận tư vấn ngay
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-              <button
-                onClick={() => handleScroll('projects')}
-                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-dark-700 font-bold rounded-2xl border border-dark-200 hover:border-primary-300 hover:text-primary-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer"
-              >
-                <Play className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
                 Xem dự án
-              </button>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 text-white font-bold rounded-2xl border border-white/10 hover:border-primary-red/30 hover:bg-white/10 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer"
+              >
+                Liên hệ tư vấn
+              </Link>
             </motion.div>
           </div>
 

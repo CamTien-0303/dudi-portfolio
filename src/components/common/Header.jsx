@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { Menu, X, Phone } from 'lucide-react'
 import { navigation } from '../../data/company'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -10,28 +10,29 @@ export default function Header() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false)
   }, [location])
 
-  const handleNavClick = (e, href) => {
-    if (href.startsWith('/#')) {
-      e.preventDefault()
-      const id = href.replace('/#', '')
-      const element = document.getElementById(id)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
-      setIsOpen(false)
-    }
-  }
+  const navLinkClass = ({ isActive }) =>
+    `relative px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 group/nav ${
+      isActive
+        ? 'text-primary-red bg-primary-red/8 font-bold'
+        : 'text-slate-300 hover:text-white hover:bg-white/5'
+    }`
+
+  const mobileNavLinkClass = ({ isActive }) =>
+    `block px-4 py-3 font-medium rounded-xl transition-all ${
+      isActive
+        ? 'text-primary-red bg-primary-red/10 font-bold'
+        : 'text-slate-300 hover:bg-white/5 hover:text-primary-red'
+    }`
 
   return (
     <header
@@ -44,13 +45,10 @@ export default function Header() {
       <div className="container-max section-padding">
         <div className="flex items-center justify-between h-18 lg:h-20">
           {/* Logo */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            aria-label="Back to top"
-            className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer border-none bg-transparent p-0 focus:outline-none"
+          <Link
+            to="/"
+            aria-label="DUDI Software – Trang chủ"
+            className="flex items-center gap-2.5 sm:gap-3 group"
           >
             <img
               src="/logo-dudi.png"
@@ -60,35 +58,34 @@ export default function Header() {
             <span className="text-base sm:text-lg font-black text-white transition-colors duration-300 group-hover:text-primary-red whitespace-nowrap select-none">
               DUDI Software
             </span>
-          </button>
- 
+          </Link>
+
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1.5">
             {navigation.map((item) => (
-              <a
+              <NavLink
                 key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="relative px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 text-slate-300 hover:text-white hover:bg-white/5 group/nav"
+                to={item.href}
+                end={item.href === '/'}
+                className={navLinkClass}
               >
                 <span className="relative z-10">{item.label}</span>
                 <span className="absolute bottom-2 left-4 right-4 h-[2px] bg-primary-red rounded-full origin-left scale-x-0 group-hover/nav:scale-x-100 transition-transform duration-300 ease-out" />
-              </a>
+              </NavLink>
             ))}
           </nav>
- 
+
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="/#contact"
-              onClick={(e) => handleNavClick(e, '/#contact')}
-              className="group inline-flex items-center gap-2 px-5.5 py-2.5 bg-primary-red text-white text-sm font-bold rounded-xl hover:bg-deep-red transition-all duration-300 hover:shadow-xl hover:shadow-primary-red/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 cursor-pointer"
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 px-5.5 py-2.5 bg-primary-red text-white text-sm font-bold rounded-xl hover:bg-deep-red transition-all duration-300 hover:shadow-xl hover:shadow-primary-red/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
             >
               <Phone className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
               Nhận tư vấn
-            </a>
+            </Link>
           </div>
- 
+
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -99,7 +96,7 @@ export default function Header() {
           </button>
         </div>
       </div>
- 
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -112,24 +109,23 @@ export default function Header() {
           >
             <div className="section-padding py-4 space-y-1">
               {navigation.map((item) => (
-                <a
+                <NavLink
                   key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="block px-4 py-3 text-slate-300 font-medium rounded-xl hover:bg-white/5 hover:text-primary-red transition-all"
+                  to={item.href}
+                  end={item.href === '/'}
+                  className={mobileNavLinkClass}
                 >
                   {item.label}
-                </a>
+                </NavLink>
               ))}
               <div className="pt-3">
-                <a
-                  href="/#contact"
-                  onClick={(e) => handleNavClick(e, '/#contact')}
+                <Link
+                  to="/contact"
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-primary-red text-white font-semibold rounded-xl hover:bg-deep-red transition-all"
                 >
                   <Phone className="w-4 h-4" />
                   Nhận tư vấn
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

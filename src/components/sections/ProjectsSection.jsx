@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { projects } from '../../data/projects'
 import SectionHeading from '../common/SectionHeading'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, ArrowRight } from 'lucide-react'
 
 function ProjectThumbnail({ project }) {
   const [imageError, setImageError] = useState(false)
@@ -106,7 +107,7 @@ function ProjectThumbnail({ project }) {
 export default function ProjectsSection({ preview = false }) {
   const [selectedFilter, setSelectedFilter] = useState('Tất cả')
 
-  const baseProjects = preview ? projects.slice(0, 6) : projects
+  const baseProjects = preview ? projects.slice(0, 3) : projects
 
   const filteredProjects = baseProjects.filter((project) => {
     if (selectedFilter === 'Tất cả') return true
@@ -123,26 +124,28 @@ export default function ProjectsSection({ preview = false }) {
       <div className="container-max section-padding relative">
         <SectionHeading
           label="Dự án"
-          title="Dự án tiêu biểu"
-          description="Một số dự án nổi bật mà chúng tôi đã thực hiện cho khách hàng trong nhiều lĩnh vực khác nhau."
+          title={preview ? "Dự án nổi bật" : "Dự án tiêu biểu"}
+          description={preview ? "Một vài sản phẩm và hệ thống DUDI Software đã triển khai cho khách hàng." : "Một số sản phẩm và hệ thống DUDI Software đã triển khai cho khách hàng."}
         />
 
         {/* Filter Chips */}
-        <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-          {['Tất cả', 'Website', 'Web App & Nền tảng', 'Ứng dụng di động'].map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setSelectedFilter(filter)}
-              className={`px-4.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer ${
-                selectedFilter === filter
-                  ? 'bg-gradient-to-r from-primary-red to-deep-red text-white shadow-lg shadow-primary-red/25 border border-transparent'
-                  : 'bg-white/5 backdrop-blur text-slate-300 border border-white/10 hover:border-primary-red/30 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+        {!preview && (
+          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
+            {['Tất cả', 'Website', 'Web App & Nền tảng', 'Ứng dụng di động'].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setSelectedFilter(filter)}
+                className={`px-4.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer ${
+                  selectedFilter === filter
+                    ? 'bg-gradient-to-r from-primary-red to-deep-red text-white shadow-lg shadow-primary-red/25 border border-transparent'
+                    : 'bg-white/5 backdrop-blur text-slate-300 border border-white/10 hover:border-primary-red/30 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Portfolio Grid */}
         <div
@@ -165,13 +168,13 @@ export default function ProjectsSection({ preview = false }) {
                 <div className="absolute inset-0 bg-[#0D0D0D]/75 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center z-20">
                   <button className="px-5 py-2.5 bg-gradient-to-r from-primary-red to-deep-red text-white rounded-xl font-bold text-sm flex items-center gap-2 hover:shadow-lg hover:shadow-primary-red/20 transition-all duration-200 scale-90 group-hover:scale-100">
                     <ExternalLink className="w-4 h-4" />
-                    Xem chi tiết
+                    Xem case study
                   </button>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
                   <span
                     className="w-2 h-2 rounded-full animate-pulse"
@@ -190,7 +193,7 @@ export default function ProjectsSection({ preview = false }) {
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -204,6 +207,19 @@ export default function ProjectsSection({ preview = false }) {
             </div>
           ))}
         </div>
+
+        {/* View All Button */}
+        {preview && (
+          <div className="mt-12 text-center" data-reveal>
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 text-white font-bold rounded-xl border border-white/10 hover:border-primary-red/30 hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              Xem tất cả dự án
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )

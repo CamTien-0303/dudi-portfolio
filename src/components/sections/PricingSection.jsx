@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { pricingCategories } from '../../data/pricing'
 import SectionHeading from '../common/SectionHeading'
 import { Check, Star, ArrowRight } from 'lucide-react'
@@ -101,11 +102,8 @@ export default function PricingSection({ preview = false }) {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      const element = document.getElementById('contact')
-                      if (element) element.scrollIntoView({ behavior: 'smooth' })
-                    }}
+                  <Link
+                    to="/contact"
                     className={`pricing-btn w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 active:translate-y-0 cursor-pointer ${isPopular
                         ? 'bg-primary-red text-white hover:bg-deep-red shadow-lg shadow-primary-red/20'
                         : 'bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white hover:border-white/20'
@@ -113,7 +111,7 @@ export default function PricingSection({ preview = false }) {
                   >
                     {plan.price === 'Liên hệ' ? 'Liên hệ báo giá' : 'Chọn gói này'}
                     <ArrowRight className="arrow-icon w-4 h-4 transition-transform duration-300" />
-                  </button>
+                  </Link>
                 </div>
               )
             })}

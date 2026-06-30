@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom'
 import { services } from '../../data/company'
 import SectionHeading from '../common/SectionHeading'
 import { ArrowRight } from 'lucide-react'
 
 export default function ServicesSection({ preview = false }) {
-  const displayServices = preview ? services.slice(0, 6) : services
+  const displayServices = preview 
+    ? services.filter(s => ['software-solutions', 'web-app', 'web-development', 'maintenance'].includes(s.id))
+    : services
 
   return (
     <section id="services" className="py-20 lg:py-28 bg-transparent relative overflow-hidden scroll-mt-28">
@@ -12,14 +15,14 @@ export default function ServicesSection({ preview = false }) {
 
       <div className="container-max section-padding relative">
         <SectionHeading
-          label="Dịch vụ"
-          title="Giải pháp toàn diện cho doanh nghiệp"
-          description="Từ thiết kế website đến phát triển phần mềm, chúng tôi cung cấp dịch vụ trọn gói giúp doanh nghiệp bạn phát triển bền vững trên nền tảng số."
+          label="Năng lực"
+          title={preview ? "Năng lực cốt lõi" : "Năng lực triển khai"}
+          description={preview ? "" : "Chúng tôi làm chủ nhiều giải pháp công nghệ từ thiết kế, phát triển phần mềm, web app cho đến việc tối ưu và vận hành lâu dài."}
         />
 
         <div
           data-reveal-group
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {displayServices.map((service) => (
             <div
@@ -46,14 +49,22 @@ export default function ServicesSection({ preview = false }) {
                   {service.description}
                 </p>
               </div>
-
-              <div className="flex items-center gap-1.5 text-primary-red text-sm font-bold group-hover:text-white group-hover:translate-x-1 transition-all duration-300 mt-auto">
-                Tìm hiểu thêm
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
             </div>
           ))}
         </div>
+
+        {/* View All Button */}
+        {preview && (
+          <div className="mt-12 text-center" data-reveal>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 text-white font-bold rounded-xl border border-white/10 hover:border-primary-red/30 hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              Xem năng lực triển khai
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
