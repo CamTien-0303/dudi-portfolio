@@ -159,10 +159,11 @@ export const contactInfo = {
 };
 
 export const navigation = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Dự án', href: '/projects' },
-  { label: 'Giới thiệu', href: '/about' },
-  { label: 'Năng lực', href: '/services' },
-  { label: 'Quy trình', href: '/process' },
-  { label: 'Liên hệ', href: '/contact' },
+  { label: 'HOME', href: '/', number: '01/07' },
+  { label: 'ABOUT', href: '/about', number: '02/07' },
+  { label: 'SERVICES', href: '/services', number: '03/07' },
+  { label: 'PROJECTS', href: '/projects', number: '04/07' },
+  { label: 'TECHNOLOGY', href: '/technology', number: '05/07' },
+  { label: 'PROCESS', href: '/process', number: '06/07' },
+  { label: 'CONTACT', href: '/contact', number: '07/07' },
 ];

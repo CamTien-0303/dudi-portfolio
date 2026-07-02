@@ -22,8 +22,12 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="space-y-4 mb-6"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-red/10 border border-primary-red/25 text-primary-red text-xs font-semibold uppercase tracking-wider mb-6">
+              <div className="text-[10px] font-black tracking-widest text-slate-500 uppercase">
+                HOME / <span className="text-primary-red">01-07</span>
+              </div>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-red/10 border border-primary-red/25 text-primary-red text-xs font-semibold uppercase tracking-wider">
                 <span className="w-2 h-2 bg-primary-red rounded-full animate-pulse" />
                 DUDI Software
               </span>
@@ -44,7 +48,7 @@ export default function HeroSection() {
                     animate={{ pathLength: 1 }}
                     transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                     d="M2 8C50 2 100 2 150 6C200 10 250 4 298 8"
-                    stroke="#ED1C24"
+                    stroke="#FF758F"
                     strokeWidth="3.5"
                     strokeLinecap="round"
                     opacity="0.8"

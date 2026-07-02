@@ -57,7 +57,7 @@ export default function TechnologySection() {
               {doubledTech.map((tech, index) => (
                 <div
                   key={`${tech.name}-${index}`}
-                  className="flex items-center gap-3.5 px-6 py-3.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-md hover:border-primary-red/20 hover:-translate-y-[2px] hover:scale-[1.015] hover:bg-white/10 hover:shadow-[0_10px_20px_-10px_rgba(237,28,36,0.15)] transition-all duration-300 cursor-pointer group shrink-0"
+                  className="flex items-center gap-3.5 px-6 py-3.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-md hover:border-primary-red/20 hover:-translate-y-[2px] hover:scale-[1.015] hover:bg-white/10 hover:shadow-[0_10px_20px_-10px_rgba(255, 117, 143,0.15)] transition-all duration-300 cursor-pointer group shrink-0"
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-105 group-hover:rotate-6"
